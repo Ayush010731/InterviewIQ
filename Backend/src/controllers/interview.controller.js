@@ -72,27 +72,52 @@ async function getAllInterviewReportsController(req, res) {
 /**
  * @description Controller to generate resume PDF based on user self description, resume and job description.
  */
-async function generateResumePdfController(req, res) {
-    const { interviewReportId } = req.params
+async function generateInterViewReportController(req, res) {
 
-    const interviewReport = await interviewReportModel.findById(interviewReportId)
+    const { selfDescription, jobDescription } = req.body
 
-    if (!interviewReport) {
-        return res.status(404).json({
-            message: "Interview report not found."
+    if (!jobDescription) {
+        return res.status(400).json({
+            message: "Job description is required."
         })
     }
 
-    const { resume, jobDescription, selfDescription } = interviewReport
+    if (!req.file && !selfDescription) {
+        return res.status(400).json({
+            message: "Either resume or self description is required."
+        })
+    }
 
-    const pdfBuffer = await generateResumePdf({ resume, jobDescription, selfDescription })
+    let resumeText = ""
 
-    res.set({
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename=resume_${interviewReportId}.pdf`
+    if (req.file) {
+        const resumeContent = await (
+            new pdfParse.PDFParse(
+                Uint8Array.from(req.file.buffer)
+            )
+        ).getText()
+
+        resumeText = resumeContent.text
+    }
+
+    const interViewReportByAi = await generateInterviewReport({
+        resume: resumeText,
+        selfDescription,
+        jobDescription
     })
 
-    res.send(pdfBuffer)
+    const interviewReport = await interviewReportModel.create({
+        user: req.user.id,
+        resume: resumeText,
+        selfDescription,
+        jobDescription,
+        ...interViewReportByAi
+    })
+
+    res.status(201).json({
+        message: "Interview report generated successfully.",
+        interviewReport
+    })
 }
 
 module.exports = { generateInterViewReportController, getInterviewReportByIdController, getAllInterviewReportsController, generateResumePdfController }
