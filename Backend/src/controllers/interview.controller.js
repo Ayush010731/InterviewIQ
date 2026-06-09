@@ -72,7 +72,7 @@ async function getAllInterviewReportsController(req, res) {
 /**
  * @description Controller to generate resume PDF based on user self description, resume and job description.
  */
-async function generateInterViewReportController(req, res) {
+async function generateResumePdfController(req, res) {
 
     const { selfDescription, jobDescription } = req.body
 
