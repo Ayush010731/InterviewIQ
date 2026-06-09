@@ -56,12 +56,18 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 }
 
 
-
 async function generatePdfFromHtml(htmlContent) {
     try {
         console.log("Launching browser...")
 
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage"
+            ]
+        })
 
         console.log("Browser launched successfully")
 
