@@ -7,7 +7,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: true, // Allow all origins (you can specify your frontend URL here)  
+    origin: "http://localhost:5173",  
     credentials: true
 }))
 
