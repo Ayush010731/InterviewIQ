@@ -115,6 +115,7 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
                         The content should be ATS friendly, i.e. it should be easily parsable by ATS systems without losing important information.
                         The resume should not be so lengthy, it should ideally be 1-2 pages long when converted to PDF. Focus on quality rather than quantity and make sure to include all the relevant information that can increase the candidate's chances of getting an interview call for the given job description.
                     `
+                    console.log("Before Resume Gemini")
 
     const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
@@ -124,6 +125,8 @@ async function generateResumePdf({ resume, selfDescription, jobDescription }) {
             responseSchema: zodToJsonSchema(resumePdfSchema),
         }
     })
+
+console.log("After Resume Gemini")
 
 
     const jsonContent = JSON.parse(response.text)
