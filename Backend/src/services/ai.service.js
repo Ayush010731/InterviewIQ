@@ -61,7 +61,7 @@ async function generatePdfFromHtml(htmlContent) {
         console.log("Launching browser...")
 
         const browser = await puppeteer.launch({
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+          
             headless: true,
             args: [
                 "--no-sandbox",
