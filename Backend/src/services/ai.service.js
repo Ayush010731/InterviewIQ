@@ -1,3 +1,5 @@
+const chromium = require("@sparticuz/chromium")
+const puppeteer = require("puppeteer")
 const { GoogleGenAI } = require("@google/genai")
 const { z } = require("zod")
 const { zodToJsonSchema } = require("zod-to-json-schema")
@@ -59,16 +61,13 @@ async function generateInterviewReport({ resume, selfDescription, jobDescription
 async function generatePdfFromHtml(htmlContent) {
     try {
         console.log("Launching browser...")
-       console.log("Puppeteer Path:", puppeteer.executablePath())
+     
         const browser = await puppeteer.launch({
-           executablePath: puppeteer.executablePath(),
-            headless: true,
-            args: [
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-dev-shm-usage"
-            ]
-        })
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless
+})
 
         console.log("Browser launched successfully")
 
