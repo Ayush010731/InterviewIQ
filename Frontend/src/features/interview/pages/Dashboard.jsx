@@ -3,7 +3,7 @@ import "../style/home.scss"
 import { useInterview } from '../hooks/useInterview.js'
 import { useNavigate } from 'react-router'
 
-const Home = () => {
+const Dashboard = () => {
 
     const { loading, generateReport,reports } = useInterview()
     const [ jobDescription, setJobDescription ] = useState("")
@@ -148,4 +148,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Dashboard;

@@ -14,47 +14,87 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         await handleRegister({username,email,password})
-        navigate("/")
+        navigate("/login")
     }
 
     if(loading){
-        return (<main><h1>Loading.......</h1></main>)
-    }
-
     return (
-        <main>
+        <section className="auth-page">
+            <h1>Loading...</h1>
+        </section>
+    )
+}
+return (
+    <section className="auth-page">
+
+        <div className="auth-card">
+
             <div className="form-container">
-                <h1>Register</h1>
+
+                <h1>Create Account</h1>
+
+                <p className="subtitle">
+                    Join InterviewIQ and start your AI-powered interview preparation.
+                </p>
 
                 <form onSubmit={handleSubmit}>
 
                     <div className="input-group">
+
                         <label htmlFor="username">Username</label>
+
                         <input
-                            onChange={(e) => { setUsername(e.target.value) }}
-                            type="text" id="username" name='username' placeholder='Enter username' />
-                    </div>
-                    <div className="input-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            onChange={(e) => { setEmail(e.target.value) }}
-                            type="email" id="email" name='email' placeholder='Enter email address' />
-                    </div>
-                    <div className="input-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            onChange={(e) => { setPassword(e.target.value) }}
-                            type="password" id="password" name='password' placeholder='Enter password' />
+                            onChange={(e)=>setUsername(e.target.value)}
+                            type="text"
+                            id="username"
+                            placeholder="Enter username"
+                        />
+
                     </div>
 
-                    <button className='button primary-button' >Register</button>
+                    <div className="input-group">
+
+                        <label htmlFor="email">Email</label>
+
+                        <input
+                            onChange={(e)=>setEmail(e.target.value)}
+                            type="email"
+                            id="email"
+                            placeholder="Enter email address"
+                        />
+
+                    </div>
+
+                    <div className="input-group">
+
+                        <label htmlFor="password">Password</label>
+
+                        <input
+                            onChange={(e)=>setPassword(e.target.value)}
+                            type="password"
+                            id="password"
+                            placeholder="Enter password"
+                        />
+
+                    </div>
+
+                    <button className="button primary-button">
+                        Register
+                    </button>
 
                 </form>
 
-                <p>Already have an account? <Link to={"/login"} >Login</Link> </p>
+                <p>
+                    Already have an account?
+                    <Link to="/login"> Login</Link>
+                </p>
+
             </div>
-        </main>
-    )
+
+        </div>
+
+    </section>
+)
 }
 
 export default Register

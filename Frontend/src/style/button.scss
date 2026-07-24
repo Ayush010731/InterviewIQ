@@ -1,20 +1,47 @@
 .button{
 
-    border: none;
-    outline: none;
-    padding-inline: 1.5rem;
-    padding-block: 0.75rem;
-    border-radius: 1rem;
-    cursor: pointer;
+    border:none;
+    outline:none;
+    padding-inline:1.5rem;
+    padding-block:.75rem;
+    border-radius:1rem;
+    cursor:pointer;
 
-    transition: all 0.3s ease-in-out;
+    transition:
+        transform .3s,
+        box-shadow .3s,
+        background .3s;
 
     &.primary-button{
-        background-color: #e1034d;
-        color: white;
+
+        background:linear-gradient(
+            135deg,
+            #7c3aed,
+            #ec4899
+        );
+
+        color:white;
+
+        border:none;
+
+        box-shadow:
+            0 12px 30px rgba(124,58,237,.35);
+
+        &:hover{
+
+            transform:translateY(-3px);
+
+            box-shadow:
+                0 18px 40px rgba(124,58,237,.45);
+
+        }
+
     }
 
     &:active{
-        transform: scale(0.9);
+
+        transform:scale(.97);
+
     }
+
 }
