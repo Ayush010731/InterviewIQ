@@ -7,11 +7,11 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:  [
-        "http://localhost:5173",
-        "https://interview-iq-project.vercel.app"
-    ],
-    credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://interview-iq-ihxq.vercel.app"
+  ],
+  credentials: true
 }))
 
 /* require all the routes here */
