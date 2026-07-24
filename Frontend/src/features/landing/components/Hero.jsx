@@ -1,4 +1,4 @@
-
+import HeroImage from "../../../assets/hero-ai.png";
 const Hero = () => {
   return (
     <>
@@ -59,7 +59,7 @@ const Hero = () => {
 
         <div className="hero-right">
           <div className="hero-image">
-            🤖
+            <img src={HeroImage} alt="InterviewIQ AI Assistant" />
           </div>
         </div>
 

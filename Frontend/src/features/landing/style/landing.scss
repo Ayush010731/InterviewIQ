@@ -339,31 +339,29 @@
 
 .hero-image{
 
-    width:500px;
-
-    height:500px;
-
-    border-radius:42px;
-
-    background:linear-gradient(135deg,#1e1b4b,#111827);
-
     display:flex;
 
     justify-content:center;
 
     align-items:center;
 
-    font-size:180px;
+    width:100%;
 
-    position:relative;
+    height:100%;
 
-    overflow:hidden;
+    img{
 
-    animation:floatRobot 4s ease-in-out infinite;
+        width:100%;
 
-    box-shadow:
-    0 0 90px rgba(124,58,237,.25),
-    0 30px 60px rgba(0,0,0,.55);
+        max-width:500px;
+
+        height:auto;
+
+        object-fit:contain;
+
+        filter:drop-shadow(0 20px 40px rgba(124,58,237,.35));
+
+    }
 
 }
 
