@@ -7,11 +7,11 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    process.env.FRONTEND_URL
-  ],
-  credentials: true
+    origin: (origin, callback) => {
+        console.log("Origin:", origin);
+        callback(null, true);
+    },
+    credentials: true
 }));
 
 /* require all the routes here */
