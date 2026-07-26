@@ -2,9 +2,9 @@ import axios from "axios"
 
 
 const api = axios.create({
-    baseURL: "https://interviewiq-project-1.onrender.com",
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true
-})
+});
 
 export async function register({ username, email, password }) {
 
